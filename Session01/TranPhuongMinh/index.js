@@ -50,27 +50,6 @@ function formatWallet(value, n){
     }
 }
 
-//3.write a function to count how many words appear in a string:
-// oneTwoThree=> 3
-function countWord(value){
-    var dem =1;
-    var arr = Array.from(value+"");
-    arr.forEach((value1,index) => {
-        if(value.charAt(index) == value1.toUpperCase())
-        {
-            dem ++;
-        }        
-    });
-    return dem;
-}
-//4.viet 1 function get the Extension of file:
-// image.png => "png","Sound.mp3"=>"mp3"
-function getextension(value){
-    var arr = Array.from(value+"");
-    var vitri = value.indexOf(".");
-    return arr.splice(vitri+1,arr.length-1).join("");
-}
-
 //3. assign ment
 //viết hàm tính giai thừa của 1 số bất kỳ
     //factorial(3) => 6
@@ -89,6 +68,7 @@ function getRandomElement(array){
     var rd = Math.round(Math.random()*len);
     return array[rd];
 }
+
 // 5. Viết hàm cắt ra 1 phần tử bất kỳ trong mảng,
 function pickOutRandomElement(array){
 var vl = getRandomElement(array);
@@ -97,12 +77,6 @@ var vl = getRandomElement(array);
             return ix;
         }
     })
-    // console.log(index);
-    // for(var i =index ; i< array.length - index;i++){
-    //     array[i] = array[i+1];
-    // }
-    // array.pop();
-    // console.log(array);
     array.splice(index,1);
     return array;
 }
@@ -119,9 +93,6 @@ function findMissingElements(arr1, arr2){
                 newarr.push(valueArr2);
             }
         }
-        // if(arr1.includes(valueArr1) == false){
-        //     newarr.push(valueArr1);
-        // }
     });
     return newarr;
 }
@@ -168,12 +139,10 @@ function convertToRomanNumber(n){
 function readNumber(n){
     var arrSo = {0:" không",1:" một" ,2:" hai", 3:" ba",4:" bốn",5:" năm",6:" sáu",7:" bảy",8:" tám",9:" chín",10:" mười"};
     var arrDonvi = [" mươi"," vạn"," ngàn"," trăm"," mươi"]; 
-var result="";
+    var result="";
     var index = 5;
     while(n / 10 >= 1){
-        console.log(n)
         var value =Math.floor(n%10);
-        console.log(value)
         if(index == 5 && value == 0){
             --index;
             n = Math.floor(n/10);
@@ -195,6 +164,52 @@ var result="";
         n = Math.floor(n/10);
         --index;
     }
+    if(n==1 && index ==0){
+        result= "mười" + result;
+        return result;
+    }
     result= arrSo[n] + (arrDonvi[index] ||"") + result;
     return result
+}
+
+//10
+//Input: [ [0,1,1], [0,1,1], [0,1,1], [0,1,1], [0,0,1]]
+//Output : [ [0,0,0,0,0] , [0,0,0,0,1]
+
+function Arrays2D(arr , index = 0, dembien=1 ,newArr = []){
+    //console.log(newArr);
+    if(index > arr.length -1){
+        return newArr;
+    }
+    var count =0;
+    for(var i=0 ; i< arr[index].length ; i++){
+        if(arr[index][i] == 0){
+            count+=1;
+            dembien = dembien * count;
+            for(var j=0 ; j< dembien; j++){
+                if(Array.isArray(newArr[j]) == false){
+                    if(newArr.length == 0){
+                        newArr[j] = [];
+                    }
+                    else{
+                        //let vl =  Math.floor(newArr/2) - dembien;
+                        let vl = dembien - j - 1;
+                        console.log("dembien, i , j , index, count")
+                        console.log(dembien, i , j , index,count);
+                        newArr[j] = [... newArr[vl]];
+                        newArr[j][newArr[j].length-1] = i;  
+                        continue;
+                    }
+                }
+                if(newArr[j].length == index+1){
+                    continue;
+                }
+                else{
+                    newArr[j].push(i);  
+                }
+            }   
+        }
+    }
+    index ++;
+    return Arrays2D(arr , index ,dembien, newArr);
 }
