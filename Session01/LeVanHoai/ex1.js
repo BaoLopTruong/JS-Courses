@@ -15,20 +15,17 @@ function formatMoney(money){
     }
     else{
         leftDot = moneyArr
-        // rightDot =
     }
     const removeFirst = leftDot.length
     
     let dem = 0;
     let x = leftDot.length
     for(let i = leftDot.length; i >= 0; i--){
-        // console.log(dem)
          dem += 1
         
         if((dem-1)%3==0){
             leftDot.splice(i,0,',');
             let y = dem-1
-            // console.warn(y)
         }
         
 
@@ -37,11 +34,8 @@ function formatMoney(money){
     // console.log(leftDot.length)
     if(removeFirst%3==0){
         leftDot.shift()
-        console.log("đã xoá")
     }
     let showMoney = leftDot.join("") + rightDot.join("")
-    // let show = leftDot.toString().join(',')
-    // let show = Object.assign({}, leftDot)
     console.log(showMoney)
 }
 
