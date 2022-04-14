@@ -8,8 +8,8 @@ function FormatWMoney(money){
 //2. Viết hàm formatWallet nhận vào 2 tham số, số tiền và số chữ số ở sau dấu phẩy
 //formatWallet(1120, 2)  => '1.12K' 
 function FormatWallet(money,x){
-
-    return ;
+    if(money>=1000) money /= 1000;
+    return console.log(money.toFixed(x)+"K");
 }
 //3. viết hàm tính giai thừa của 1 số bất kỳ
 function factorial(num){
@@ -76,6 +76,7 @@ function cashOut(money){
 let text ="";
 const roman = {D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1};
 function convertToRomanNumber(num){
+    if(num == 0) return console.log(text);
     for(let i of Object.keys(roman)){
         let q = Math.floor(num/roman[i]);
         if(q>=1 && q<=9){
@@ -87,3 +88,70 @@ function convertToRomanNumber(num){
 }
 //9. In cách đọc số: In ra màn hình cách đọc số nhỏ hơn 1,000,000.
 //    readNumber(726504) => bảy mươi hai vạn sáu ngàn năm trăm linh tư.
+const number = {0:"không",1:"một",2:"hai",3:"ba",4:"bốn",5:"năm",6:"sáu",7:"bảy",8:"tám",9:"chín",10:"mười"};
+let str="";
+function readNumber(num){
+    if(num == 0) return console.log(str);
+    let q = Math.floor(num/10000);
+    if(q>=1 && q<=99){
+        if(Math.floor(q/10) === 0){
+            str += number[q]+" vạn ";
+            return readNumber(num%10000);
+        }else{
+            str += number[Math.floor(q/10)]+" mươi "+number[q%10]+" vạn ";
+            return readNumber(num%10000);
+        }
+    }else{
+        q = Math.floor(num/1000);
+        if(q>=1 && q<=99){
+            if(Math.floor(q/10) === 0){
+                str += number[q]+" ngàn ";
+                return readNumber(num%1000);
+            }else{
+                str += number[Math.floor(q/10)]+" mươi "+number[q%10]+" ngàn ";
+                return readNumber(num%1000);
+            }
+        }else{
+            str += number[q]+" ngàn ";
+            q = Math.floor(num/100);
+            if(q>=1 && q<=99){
+                if(Math.floor(q/10) === 0){
+                    str += number[q]+" trăm ";
+                    return readNumber(num%100);
+                }else{
+                    str += number[Math.floor(q/10)]+" mươi "+number[q%10]+" trăm ";
+                    return readNumber(num%100);
+                }
+            }else{
+                str += number[q]+" trăm ";
+                q = Math.floor(num/10);
+                if(q === 0){
+                    if(num === 4){
+                        str += "linh tư";
+                    }else{
+                        str += "linh "+number[num];
+                    }
+                }else{
+                    if(num >= 10 && num <= 19){
+                        if(num%10 === 5) str += number[q]+" mười lăm";
+                        str += "mười "+number[num%10];
+                    }else if(num >= 20 && num <= 99){
+                        if(num%10 === 1){
+                            str += number[q]+" mươi mốt";
+                        }else if(num%10 === 4){
+                            str += number[q]+" mươi tư";
+                        }else if(num%10 === 5){
+                            str += number[q]+" mươi lăm";
+                        }else if(num%10 === 0){
+                            str += number[q]+" mươi";
+                        }
+                        else{
+                            str += number[q]+" mươi "+number[num%10];
+                        }
+                    }
+                } 
+            }
+        }
+    }
+    return console.log(str);
+}
