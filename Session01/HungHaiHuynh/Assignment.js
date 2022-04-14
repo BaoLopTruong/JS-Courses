@@ -4,9 +4,27 @@ const fortmatMoney = (money) => {
     money = moneyFormat.format(money)
     return money
 }
-console.log(fortmatMoney(1000.0011))
+// console.log(fortmatMoney(1000.0011))
 
 // * 02
+
+function formatWallet(money, param) {
+    let Symbols = ''
+    if (money >= 1000000000) {
+            money /= 1000000000
+            Symbols = 'B'
+    } 
+    if (money >= 1000000) {
+            money /= 1000000
+            Symbols = 'M'
+    } 
+    if (money >= 1000) {
+            money /= 1000
+            Symbols = 'K'
+    } 
+    return money.toFixed(param).concat(Symbols)
+}
+console.log("Money ", formatWallet(1120,2));
 
 // * 03
 const factorial = (number) => {
