@@ -52,18 +52,17 @@ function findMissingElements(arr1, arr2) {
 
 // cau 7
 function cashOut(x) {
-    
-        let soto_1 = 0;
-        let soto_50 = 0;
-        let soto_20 = 0;
-        let soto_10 = 0;
-    
+        
+        let soto_50;
+        let soto_20;
+        let soto_10;
+        let soto_1;
         if(x > 0) {
-            while(x > 0){
-                if (x / 50)
+           
+                if (x >= 50)
                 {
-                    x -= 50;
-                    soto_50++;
+                    soto_50 = x / 50;
+                    x -= 50 * soto_50;
                 }
                 else if ((x < 50) && (x >= 20))
                 {
@@ -79,7 +78,7 @@ function cashOut(x) {
                 {
                     soto_1 = x;
                 }
-            }
+            
             
                
             console.log('50: ', soto_50);
