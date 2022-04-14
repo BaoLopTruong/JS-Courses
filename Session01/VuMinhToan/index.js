@@ -60,25 +60,25 @@ function cashOut(x) {
     
         if(x > 0) {
             while(x > 0){
-                if (x >= 50)
-            {
-                x -= 50;
-                soto_50++;
-            }
-            else if ((x < 50) && (x >= 20))
-            {
-                x -= 20;
-                soto_20++;
-            }
-            else if ((x < 20) && (x >= 10))
-            {
-                x -= 10;
-                soto_10++;
-            }
-            else if ((x < 10) && (x >= 0))
-            {
-                soto_1 = x;
-            }
+                if (x / 50)
+                {
+                    x -= 50;
+                    soto_50++;
+                }
+                else if ((x < 50) && (x >= 20))
+                {
+                    x -= 20;
+                    soto_20++;
+                }
+                else if ((x < 20) && (x >= 10))
+                {
+                    x -= 10;
+                    soto_10++;
+                }
+                else if ((x < 10) && (x >= 0))
+                {
+                    soto_1 = x;
+                }
             }
             
                
