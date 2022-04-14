@@ -112,7 +112,7 @@ function readNumber(num){
                 return readNumber(num%1000);
             }
         }else{
-            str += number[q]+" ngàn ";
+            //str += number[q]+" ngàn ";
             q = Math.floor(num/100);
             if(q>=1 && q<=99){
                 if(Math.floor(q/10) === 0){
@@ -123,7 +123,7 @@ function readNumber(num){
                     return readNumber(num%100);
                 }
             }else{
-                str += number[q]+" trăm ";
+                //str += number[q]+" trăm ";
                 q = Math.floor(num/10);
                 if(q === 0){
                     if(num === 4){
